@@ -115,3 +115,6 @@ After `push_string` or `push_uint32_as_ASCII` has been called, the stack is read
 Once a `sys_write` has been performed, the pushed string can be popped using `clean_stack` This function pops as many bytes as indicated by `R8`. Again since the `RSP` only moves by 8 bytes (64-bit architecture), it performs a total of _ceil(`R8`/8)_ pop operations.
 
 It is important to note that these family of functions make alterations to global stack frame, and so leave a "Positive SP" or "Negative SP" after their function returns.
+
+## Disclaimer
+The code to find ASCII string from an unsigned 32-bit integer was built upon the code obtained from https://codereview.stackexchange.com/q/142842.
