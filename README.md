@@ -37,7 +37,8 @@ _start:
   xor r8, r8
 ```
 
-Now, finally we push the string using `push_string` and a number using `push_uint32_as_ASCII`.
+Now, finally we push a number using `push_uint32_as_ASCII` and the string using `push_string`.
+(Remember to push in LIFO)
 ```
   mov rdi, 69
   call push_uint32_as_ASCII
