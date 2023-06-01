@@ -249,7 +249,7 @@ push_uint32_as_ASCII:
 
 
 ; =================================================================================
-;
+; CLEAN_STACK
 ; ---------------------------------------------------------------------------------
 ; Function to "clean" the stack after push_string or push_uint32_as_ASCII calls
 ; Input:-
