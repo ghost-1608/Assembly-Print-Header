@@ -70,13 +70,13 @@ push_string:
     mov rcx, r8                         ; Load existing length of string
     add r8, rdx                         ; Update value of R8 with current string length
 
-    and rcx, 7                          ; Performing modulo operation on RCX with 8
+    and rcx, 7                          ; Perform modulo operation on RCX with 8
     test rcx, rcx                       
     jz .b0                              ; Jump to .b0 if RCX is a multiple of 8
 
     pop rax                             ; Pop previous stack push as it contains null characters
     neg rcx                             
-    add rcx, 8                          ; Finds number of null characters
+    add rcx, 8                          ; Find number of null characters
     mov r10, rcx                        
 
 ; Loop to right shift RAX to eliminate all null characters
