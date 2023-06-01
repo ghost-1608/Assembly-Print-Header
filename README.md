@@ -51,7 +51,7 @@ And,
 ```
 
 We're ready to print both on the console.
-We do this by using the kernel's sys_write function.
+We do this by using the kernel's `sys_write` function.
 ```
 mov rax, 1
 mov rdi, 1
