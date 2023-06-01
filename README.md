@@ -9,7 +9,7 @@ This header contains 3 functions that aid printing to the console:-
 
 ## Sample Code
 ### The following tutorial provides code snippets and the final code to use the library
-### (NASM syntax; AMD64 assembly; Compiled as ELF64)
+### (NASM syntax; AMD64 assembly; Assembled as ELF64)
 
 
 Include the library like so:-
