@@ -112,7 +112,7 @@ The `RBX` register is used for this reason to offset the `RSP` while accessing t
 If during a function call to the two push functions, there's existing string on the stack, the functions automatically pack data on to the stack to avoid any null character in the middle of the string on the stack.
 
 After `push_string` or `push_uint32_as_ASCII` has been called, the stack is ready and a `sys_write` function can be performed using `RSP + RBX` for the address of the string, with `R8` for the number of bytes to print.
-Once a `sys_write` has been performed, the pushed string can be popped using `clean_stack` This function pops as many bytes as indicated by `R8`. Again since the `RSP` only moves by 8 bytes (64-bit architecture), it performs a total of _ceil(`R8`/8)_ pop operations.
+Once a `sys_write` has been performed, the pushed string can be popped using `clean_stack`. This function pops as many bytes as indicated by `R8`. Again since the `RSP` only moves by 8 bytes (64-bit architecture), it performs a total of _ceil(`R8`/8)_ pop operations.
 
 It is important to note that these family of functions make alterations to global stack frame, and so leave a "Positive SP" or "Negative SP" after their function returns.
 
