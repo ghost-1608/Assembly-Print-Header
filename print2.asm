@@ -62,7 +62,6 @@ section .text
 ; (Uses RAX, RBX, RCX, R9, and R10 registers internally)
 ; ---------------------------------------------------------------------------------
 ;
-
 push_string:
     pop r9                              ; Since the stack is altered, the return address is saved
     
@@ -159,7 +158,6 @@ push_string:
 ; (Uses RAX, RBX, RCX, RDI, R9, R10, and R11 internally)
 ; ---------------------------------------------------------------------------------
 ;
-
 push_uint32_as_ASCII:   
     pop r9                              ; Store return address
 
@@ -262,7 +260,6 @@ push_uint32_as_ASCII:
 ; (Uses RAX, RCX, and R9 internally)
 ; ---------------------------------------------------------------------------------
 ;
-
 clean_stack:
     pop r9                              ; Store return address
 
