@@ -117,4 +117,4 @@ Once a `sys_write` has been performed, the pushed string can be popped using `cl
 It is important to note that these family of functions make alterations to global stack frame, and so leave a "Positive SP" or "Negative SP" after their function returns.
 
 ## Reference
-The code to find ASCII string from an 32-bit integer was built upon the code obtained from https://codereview.stackexchange.com/q/142842.
+The code to build ASCII string from an 32-bit integer was built upon the code obtained from https://codereview.stackexchange.com/q/142842.
