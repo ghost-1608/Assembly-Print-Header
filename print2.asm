@@ -5,7 +5,7 @@
 ; |-------------------------------------------------------------------------------|
 ; | This header contains 3 functions that aid printing to the console:-           |
 ; |      > push_string: For strings                                               |
-; |      > push_uint32_as_ASCII: For uint32 values                                |
+; |      > push_int32_as_ASCII: For int32 values                                  |
 ; |      > clean_stack: To clean stack after the previous two functions           |
 ; |                                                                               |
 ; |                                                                               |
@@ -26,7 +26,7 @@
 ; | any null character in the middle of the string on the stack.                  |
 ; |                                                                               |
 ; |                                                                               |
-; | After push_string or push_uint32_as_ASCII has been called, the stack is ready |
+; | After push_string or push_int32_as_ASCII has been called, the stack is ready  |
 ; | and a sys_write function can be performed using (RSP + RBX) for the           |
 ; | address of the string, with R8 for the number of bytes to print.              |
 ; |                                                                               |
@@ -144,9 +144,9 @@ push_string:
 
 
 ; =================================================================================
-; PUSH_UINT32_AS_ASCII
+; PUSH_INT32_AS_ASCII
 ; ---------------------------------------------------------------------------------
-; Function to push an unsigned 32-bit integer to the stack as an ASCII string
+; Function to push a 32-bit integer to the stack as an ASCII string
 ;
 ; Input:-   
 ;       > RDI holding the number
@@ -158,7 +158,7 @@ push_string:
 ; (Uses RAX, RBX, RCX, RDI, R9, R10, and R11 internally)
 ; ---------------------------------------------------------------------------------
 ;
-push_uint32_as_ASCII:   
+push_int32_as_ASCII:   
     pop r9                              ; Store return address
 
     mov eax, edi                        ; Copy recieved 32-bit number
@@ -190,6 +190,15 @@ push_uint32_as_ASCII:
     xor r10, r10
     mov rcx, 8
 
+; If number is negative, negate it
+.b1:
+    mov r11, rdi
+
+    test r11, r11
+    jns .l1
+
+    neg eax
+
 ; Loop to convert decimal number to ASCII; push to stack
 .l1:
     shl r10, 8
@@ -220,11 +229,21 @@ push_uint32_as_ASCII:
     jnz .l1
 ; end loop
 
+; If given number was negative, add '-' sign
+    test r11, r11
+    jns .b3
+
+    shl r10, 8
+    lea r10, [r10 + '-']
+    dec rcx
+    inc r8
+
 ; Calculate value for RBX; Check if R10 still has to be pushed
+.b3:
     and rcx, 7
     mov rbx, rcx
     test rcx, rcx
-    jz .b2
+    jz .b4
 
 ; Loop to "left-adjust" R10
 .l2:
@@ -235,13 +254,13 @@ push_uint32_as_ASCII:
 ; end loop      
 
 ; Push R10 if not empty
-.b2:
+.b4:
     test r10, r10
-    jz .b3
-    
+    jz .b5
+
     push r10
 
-.b3:
+.b5:
     jmp r9                              ; Return to previously stored return address
 ;
 ; =================================================================================
