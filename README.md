@@ -53,16 +53,16 @@ And,
 We're ready to print both on the console.
 We do this by using the kernel's `sys_write` function.
 ```
-mov rax, 1
-mov rdi, 1
-lea rsi, [rsp + rbx]
-mov rdx, r8
-syscall
+  mov rax, 1
+  mov rdi, 1
+  lea rsi, [rsp + rbx]
+  mov rdx, r8
+  syscall
 ```
 
 Finally, let's clean the stack
 ```
-call clean_stack
+  call clean_stack
 ```
 
 
