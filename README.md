@@ -114,7 +114,7 @@ If during a function call to the two push functions, there's existing string on 
 After `push_string` or `push_int32_as_ASCII` has been called, the stack is ready and a `sys_write` function can be performed using `RSP + RBX` for the address of the string, with `R8` for the number of bytes to print.
 Once a `sys_write` has been performed, the pushed string can be popped using `clean_stack`. This function pops as many bytes as indicated by `R8`. Again since the `RSP` only moves by 8 bytes (64-bit architecture), it performs a total of _ceil(`R8`/8)_ pop operations.
 
-It is important to note that these family of functions make alterations to global stack frame, and so leave a "Positive SP" or "Negative SP" after their function returns.
+It is important to note that these family of functions make alterations to caller's stack frame, and so leave a "Positive SP" or "Negative SP" after their function returns.
 
 ## Reference
 The code to generate ASCII string from a 32-bit integer was built upon the code obtained from https://codereview.stackexchange.com/q/142842.
