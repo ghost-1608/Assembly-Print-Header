@@ -3,7 +3,7 @@ A small header file to aid printing strings and numbers to the console in assemb
 
 ## Description
 This header contains 3 functions that aid printing to the console:-
-* `push_string`: For strings
+* `push_ASCII`: For strings
 * `push_int32_as_ASCII`: For int32 values
 * `clean_stack`: To clean stack after the previous two functions
 
@@ -37,7 +37,7 @@ _start:
   xor r8, r8
 ```
 
-Now, finally we push a number using `push_int32_as_ASCII` and the string using `push_string`.
+Now, finally we push a number using `push_int32_as_ASCII` and the string using `push_ASCII`.
 (Remember to push in LIFO)
 ```
   mov rdi, 69
@@ -47,7 +47,7 @@ And,
 ```
   mov rsi, string0
   mov rdx, string0.len
-  call push_string
+  call push_ASCII
 ```
 
 We're ready to print both on the console.
@@ -87,7 +87,7 @@ _start:
   
   mov rsi, string0
   mov rdx, string0.len
-  call push_string
+  call push_ASCII
   
   mov rax, 1
   mov rdi, 1
@@ -111,7 +111,7 @@ The `RBX` register is used for this reason to offset the `RSP` while accessing t
 
 If during a function call to the two push functions, there's existing string on the stack, the functions automatically pack data on to the stack to avoid any null character in the middle of the string on the stack.
 
-After `push_string` or `push_int32_as_ASCII` has been called, the stack is ready and a `sys_write` function can be performed using `RSP + RBX` for the address of the string, with `R8` for the number of bytes to print.
+After `push_ASCII` or `push_int32_as_ASCII` has been called, the stack is ready and a `sys_write` function can be performed using `RSP + RBX` for the address of the string, with `R8` for the number of bytes to print.
 Once a `sys_write` has been performed, the pushed string can be popped using `clean_stack`. This function pops as many bytes as indicated by `R8`. Again since the `RSP` only moves by 8 bytes (64-bit architecture), it performs a total of _ceil(`R8`/8)_ pop operations.
 
 It is important to note that these family of functions make alterations to the caller's stack frame, and so leave a "Positive SP" or "Negative SP" after their function returns.
