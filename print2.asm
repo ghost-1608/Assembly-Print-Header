@@ -85,10 +85,10 @@ push_string:
     dec rcx
     test rcx, rcx
     jnz .l0
+; end loop
 
     mov rcx, r10
     jmp .l1
-; end loop
     
 .b0:
     xor rax, rax
@@ -170,7 +170,7 @@ push_int32_as_ASCII:
     test rcx, rcx
     jz .b0                              ; Jump to .b0 if RCX is divisible by 8
 
-    pop r10                             ; Pop previous stack push into R10
+    pop r10                             ; Pop previous stack push as it contains null characters
     neg rcx
     add rcx, 8                          ; Calculate number of null character
     mov r11, rcx
@@ -181,10 +181,10 @@ push_int32_as_ASCII:
     dec rcx
     test rcx, rcx
     jnz .l0
+; end loop
 
     mov rcx, r11
     jmp .l1
-; end loop
 
 .b0:
     xor r10, r10
