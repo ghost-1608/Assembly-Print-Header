@@ -170,7 +170,7 @@ push_int32_as_ASCII:
     test rcx, rcx
     jz .b0                              ; Jump to .b0 if RCX is divisible by 8
 
-    pop r10                             ; Pop previous stack push into R10
+    pop r10                             ; Pop previous stack push as it contains null characters
     neg rcx
     add rcx, 8                          ; Calculate number of null character
     mov r11, rcx
