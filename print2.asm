@@ -26,7 +26,7 @@
 ; | any null character in the middle of the string on the stack.                  |
 ; |                                                                               |
 ; |                                                                               |
-; | After push_ASCII or push_int32_as_ASCII has been called, the stack is ready  |
+; | After push_ASCII or push_int32_as_ASCII has been called, the stack is ready   |
 ; | and a sys_write function can be performed using (RSP + RBX) for the           |
 ; | address of the string, with R8 for the number of bytes to print.              |
 ; |                                                                               |
