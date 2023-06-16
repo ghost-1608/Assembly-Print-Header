@@ -85,10 +85,10 @@ push_string:
     dec rcx
     test rcx, rcx
     jnz .l0
+; end loop
 
     mov rcx, r10
     jmp .l1
-; end loop
     
 .b0:
     xor rax, rax
