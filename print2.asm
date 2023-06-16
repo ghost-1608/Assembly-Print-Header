@@ -218,13 +218,13 @@ push_int32_as_ASCII:
 
     dec rcx
     test rcx, rcx
-    jnz .b1
+    jnz .b2
 
     push r10
     xor r10, r10
     mov rcx, 8
 
-.b1:
+.b2:
     test eax, eax
     jnz .l1
 ; end loop
