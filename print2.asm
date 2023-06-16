@@ -181,10 +181,10 @@ push_int32_as_ASCII:
     dec rcx
     test rcx, rcx
     jnz .l0
+; end loop
 
     mov rcx, r11
     jmp .l1
-; end loop
 
 .b0:
     xor r10, r10
