@@ -4,7 +4,7 @@
 ; |                                                                               |
 ; |-------------------------------------------------------------------------------|
 ; | This header contains 3 functions that aid printing to the console:-           |
-; |      > push_string: For strings                                               |
+; |      > push_ASCII: For ASCII strings                                          |
 ; |      > push_int32_as_ASCII: For int32 values                                  |
 ; |      > clean_stack: To clean stack after the previous two functions           |
 ; |                                                                               |
@@ -26,7 +26,7 @@
 ; | any null character in the middle of the string on the stack.                  |
 ; |                                                                               |
 ; |                                                                               |
-; | After push_string or push_int32_as_ASCII has been called, the stack is ready  |
+; | After push_ASCII or push_int32_as_ASCII has been called, the stack is ready  |
 ; | and a sys_write function can be performed using (RSP + RBX) for the           |
 ; | address of the string, with R8 for the number of bytes to print.              |
 ; |                                                                               |
@@ -47,7 +47,7 @@
 section .text
 
 ; =================================================================================
-; PUSH_STRING
+; PUSH_ASCII
 ; ---------------------------------------------------------------------------------
 ; Function to push existing string (ASCII) to the stack
 ;
@@ -62,7 +62,7 @@ section .text
 ; (Uses RAX, RBX, RCX, R9, and R10 registers internally)
 ; ---------------------------------------------------------------------------------
 ;
-push_string:
+push_ASCII:
     pop r9                              ; Since the stack is altered, the return address is saved
     
     lea rbx, [rsi + rdx - 1]            ; Load address of the last char into RBX
