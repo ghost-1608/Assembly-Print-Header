@@ -3,7 +3,7 @@ A small header file to aid printing strings and numbers to the console in assemb
 
 ## Description
 This header contains 3 functions that aid printing to the console:-
-* `push_ASCII`: For strings
+* `push_ASCII`: For ASCII strings
 * `push_int32_as_ASCII`: For int32 values
 * `clean_stack`: To clean stack after the previous two functions
 
