@@ -99,7 +99,7 @@ _start:
   
   pop rbp
   mov rax, 60
-  mov rdi, 0
+  xor rdi, rdi
   syscall
 ```
 ## Behind The Scenes
